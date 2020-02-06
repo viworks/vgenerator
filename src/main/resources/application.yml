@@ -1,0 +1,51 @@
+data:
+  cn.viworks.vgenerator.data.JdbcData:
+    alias: jdbc
+    driver: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/demo?useUnicode=true&amp;characterEncoding=utf8&amp;zeroDateTimeBehavior=convertToNull
+    username: root
+    password: root
+    dbtype:
+      # number
+      TINYINT: java.lang.Integer
+      SMALLINT: java.lang.Integer
+      MEDIUMINT: java.lang.Integer
+      INT: java.lang.Integer
+      BIGINT: java.lang.Long
+      DECIMAL: java.math.BigDecimal
+      BIT: java.lang.Integer
+      # varchar
+      CHAR: java.lang.String
+      VARCHAR: java.lang.String
+      TEXT: java.lang.String
+      # date
+      DATETIME: java.util.Date
+      DATE: java.util.Date
+      TIMESTAMP: java.util.Date
+      TIME: java.util.Date
+      YEAR: java.util.Date
+      # boolean
+      BOOL: java.lang.Boolean
+      #BIT: java.lang.Integer
+      # bit
+      VARBIT: java.lang.Object
+      BYTEA: Object
+
+generator:
+  cn.viworks.vgenerator.generator.DefaultGenerator:
+    source: jdbc
+    file:
+      model:  src\\main\\java\\com\\samples\\demo\\model\\{Model}.java
+      mapper:  src\\main\\java\\com\\samples\\demo\\mapper\\{Model}.xml
+    files:
+      orm:
+        - model
+        - mapper
+  cn.viworks.vgenerator.generator.SchemaGenerator:
+    source: jdbc
+    file:
+      schema: schema.xlsx
+
+templatehome: classpath:templates
+outputhome: D:\\workspacezz\\vgenerator\\output\\
+
