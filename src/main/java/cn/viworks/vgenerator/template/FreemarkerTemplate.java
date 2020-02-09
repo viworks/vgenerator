@@ -10,6 +10,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.net.URLDecoder;
 
 /**
  * 模板文件载入类.
@@ -35,11 +36,13 @@ public class FreemarkerTemplate implements VgTemplate {
 
 
 		URL url = Thread.currentThread().getContextClassLoader().getResource("");
+		String dir = URLDecoder.decode(url.getPath(),"utf-8");
+
 //		URL url = YamlUtil.class.getClassLoader().getResource("templates");
 
 		logger.info("templates path:" + url.getPath());
 
-		cfg.setDirectoryForTemplateLoading(new File(url.getPath() + "/templates"));
+		cfg.setDirectoryForTemplateLoading(new File(dir + "/templates"));
 		cfg.setObjectWrapper(new DefaultObjectWrapper());
 		return cfg;
 	}
